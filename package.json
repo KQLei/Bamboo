@@ -26,11 +26,14 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
     "prettier": "^2.2.1",
+    "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.6.11",
     "webpack-bundle-analyzer": "^4.5.0"
   },
-  "prettier":{
+  "prettier": {
     "singleQuote": true,
     "semi": false,
     "stylelintIntegration": true,
