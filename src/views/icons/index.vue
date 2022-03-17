@@ -1,7 +1,15 @@
 <template>
-  <div>
+  <div class="flex flex-wrap">
     <div v-for="item of svgIcons" :key="item">
-      <svg-icon :icon-name="item" />
+      <el-tooltip effect="dark" placement="top">
+        <div slot="content">
+          {{ generateIconCode(item) }}
+        </div>
+        <div class="icon-item">
+          <svg-icon :icon-name="item" />
+          <span>{{ item }}</span>
+        </div>
+      </el-tooltip>
     </div>
   </div>
 </template>
@@ -18,10 +26,19 @@ export default {
   },
   methods: {
     generateIconCode(symbol) {
-      return `<svg-icon icon-name="${symbol}}" />`
+      return `<svg-icon icon-name="${symbol}" />`
     }
   }
 }
 </script>
 
-<style></style>
+<style lang="less" scoped>
+.icon-item {
+  font-size: 25px;
+  color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+</style>

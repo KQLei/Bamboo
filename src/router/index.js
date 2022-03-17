@@ -26,7 +26,7 @@ import Layout from '@/layout'
  *
  */
 
-const routes = [
+export const routes = [
   {
     path: '/',
     name: 'Layout',
@@ -37,19 +37,30 @@ const routes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'Dashboadr', icon: 'dashboard', affix: true }
+        meta: { title: '首页', icon: 'dashboard', affix: true }
       }
     ]
   },
   {
     path: '/icon',
     component: Layout,
+    name: 'Icon',
+    meta: {
+      title: '图标',
+      icon: 'icon'
+    },
     children: [
       {
-        path: 'index',
+        path: 'my',
+        component: () => import('@/views/icons/index'),
+        name: 'MyIcon',
+        meta: { title: '我的图标', noCache: true }
+      },
+      {
+        path: 'ElementIcon',
         component: () => import('@/views/icons/index'),
         name: 'Icons',
-        meta: { title: 'Icons', icon: 'icon', noCache: true }
+        meta: { title: 'ElementUI图标', noCache: true }
       }
     ]
   }
