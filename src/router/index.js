@@ -40,6 +40,18 @@ const routes = [
         meta: { title: 'Dashboadr', icon: 'dashboard', affix: true }
       }
     ]
+  },
+  {
+    path: '/icon',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/icons/index'),
+        name: 'Icons',
+        meta: { title: 'Icons', icon: 'icon', noCache: true }
+      }
+    ]
   }
 ]
 
