@@ -1,6 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
+NProgress.configure({
+  showSpinner: false
+})
+
 Vue.use(VueRouter)
 
 // 导入整体框架布局页
@@ -58,7 +65,7 @@ export const routes = [
       },
       {
         path: 'ElementIcon',
-        component: () => import('@/views/icons/index'),
+        component: () => import('@/views/icons/element'),
         name: 'Icons',
         meta: { title: 'ElementUI图标', noCache: true }
       }
@@ -68,6 +75,18 @@ export const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  next()
+  NProgress.done()
+})
+
+router.afterEach(() => {
+  // 结束加载
+  NProgress.done()
 })
 
 export default router

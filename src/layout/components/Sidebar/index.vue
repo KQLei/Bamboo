@@ -1,34 +1,63 @@
 <template>
-  <el-menu :default-active="activeMenu" @select="selectMenuHandler">
-    <div v-for="nav of navs" :key="nav.name">
-      <el-submenu v-if="nav.children.length > 1" :index="nav.name">
-        <template slot="title">
-          <svg-icon :icon-name="nav.meta.icon" />
-          <span>{{ nav.meta.title }}</span>
-        </template>
-        <el-menu-item
-          v-for="item of nav.children"
-          :key="item.name"
-          :index="item.name"
+  <el-aside :width="variables.sideWidth">
+    <el-menu
+      :default-active="activeMenu"
+      :background-color="variables.sidebarBg"
+      :text-color="variables.sidebarText"
+      :active-text-color="variables.sidebarActiveText"
+      @select="selectMenuHandle"
+    >
+      <template v-for="nav of navs">
+        <el-submenu
+          v-if="nav.children.length > 1"
+          :key="nav.name"
+          :index="nav.name"
+          class="submenu-popper"
         >
-          {{ item.meta.title }}
+          <template slot="title">
+            <item :icon="nav.meta.icon" :title="nav.meta.title" />
+          </template>
+          <el-menu-item
+            v-for="item of nav.children"
+            :key="item.name"
+            :index="item.name"
+          >
+            <item :title="item.meta.title" />
+          </el-menu-item>
+        </el-submenu>
+        <el-menu-item
+          v-else
+          :key="nav.children[0].name"
+          :index="nav.children[0].name"
+        >
+          <item
+            :icon="nav.children[0].meta.icon"
+            :title="nav.children[0].meta.title"
+          />
         </el-menu-item>
-      </el-submenu>
-      <el-menu-item v-else :index="nav.children[0].name">
-        <svg-icon :icon-name="nav.children[0].meta.icon" />
-        <span> {{ nav.children[0].meta.title }}</span>
-      </el-menu-item>
-    </div>
-  </el-menu>
+      </template>
+    </el-menu>
+  </el-aside>
 </template>
 
 <script>
+import Item from './Item'
+
 import { routes } from '@/router'
+
+import variables from '@/assets/styles/variables.less'
+
 export default {
+  components: {
+    Item
+  },
   data() {
     return {}
   },
   computed: {
+    variables() {
+      return variables
+    },
     navs() {
       return routes
     },
@@ -39,11 +68,9 @@ export default {
     }
   },
   methods: {
-    selectMenuHandler(index) {
+    selectMenuHandle(index) {
       this.$router.replace({ name: index })
     }
   }
 }
 </script>
-
-<style></style>

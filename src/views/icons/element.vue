@@ -1,11 +1,11 @@
 <template>
-  <div class="flex flex-wrap">
-    <icon-item v-for="item of svgIcons" :key="item">
+  <div class="flex flex-wrap icon-wrap">
+    <icon-item v-for="item of elIcons" :key="item">
       <template v-slot:tooltip>
         {{ generateIconCode(item) }}
       </template>
       <template v-slot:icon>
-        <svg-icon :icon-name="item" />
+        <i :class="'el-icon-' + item"></i>
       </template>
       <template v-slot:iconName>{{ item }}</template>
     </icon-item>
@@ -15,7 +15,7 @@
 <script>
 import IconItem from './components/IconItem'
 
-import svgIcons from './svg-icons'
+import elIcons from './element-icons'
 
 export default {
   name: 'Icons',
@@ -24,12 +24,12 @@ export default {
   },
   data() {
     return {
-      svgIcons
+      elIcons
     }
   },
   methods: {
     generateIconCode(symbol) {
-      return `<svg-icon icon-name="${symbol}" />`
+      return `<i class="el-icon-${symbol}" />`
     }
   }
 }

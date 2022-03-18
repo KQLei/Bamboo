@@ -1,10 +1,10 @@
 <template>
   <el-container class="layout-view">
-    <el-header height="50px">头</el-header>
+    <el-header>
+      <header-content />
+    </el-header>
     <el-container>
-      <el-aside width="230px">
-        <sidebar>sidebar</sidebar>
-      </el-aside>
+      <sidebar />
       <el-main>
         <router-view />
       </el-main>
@@ -13,10 +13,12 @@
 </template>
 
 <script>
-import sidebar from './components/Sidebar/index.vue'
+import HeaderContent from './components/Header/index.vue'
+import Sidebar from './components/Sidebar/index.vue'
 export default {
   components: {
-    sidebar
+    HeaderContent,
+    Sidebar
   }
 }
 </script>
