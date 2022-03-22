@@ -8,6 +8,10 @@ import './assets/styles/index.less'
 
 import './icons'
 
+import './echarts'
+
+import './lodash'
+
 Vue.config.productionTip = false
 
 new Vue({

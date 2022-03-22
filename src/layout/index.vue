@@ -15,6 +15,7 @@
 <script>
 import HeaderContent from './components/Header/index.vue'
 import Sidebar from './components/Sidebar/index.vue'
+
 export default {
   components: {
     HeaderContent,

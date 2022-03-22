@@ -23,11 +23,14 @@ export default {
 <style lang="less" scoped>
 .nav-item {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  height: 56px;
+  min-width: 64px;
   .icon {
-    font-size: 16px;
-    margin-right: 10px;
+    font-size: 18px;
+  }
+  span {
+    margin-left: 15px;
   }
 }
 </style>

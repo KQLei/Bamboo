@@ -47,6 +47,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #ffffff;
+
   .title {
     font-size: 20px;
     img {
@@ -58,8 +60,10 @@ export default {
   }
   .menu {
     img {
-      height: 50px;
-      width: 50px;
+      border-radius: 50%;
+      vertical-align: middle;
+      height: 40px;
+      width: 40px;
     }
   }
 }

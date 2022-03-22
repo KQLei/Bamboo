@@ -1,10 +1,11 @@
 <template>
-  <el-aside :width="variables.sideWidth">
+  <el-aside :width="sideWidth + 'px'">
     <el-menu
       :default-active="activeMenu"
       :background-color="variables.sidebarBg"
       :text-color="variables.sidebarText"
       :active-text-color="variables.sidebarActiveText"
+      :collapse="isCollapse"
       @select="selectMenuHandle"
     >
       <template v-for="nav of navs">
@@ -12,6 +13,7 @@
           v-if="nav.children.length > 1"
           :key="nav.name"
           :index="nav.name"
+          :collapse="isCollapse"
           class="submenu-popper"
         >
           <template slot="title">
@@ -47,10 +49,12 @@ import { routes } from '@/router'
 
 import variables from '@/assets/styles/variables.less'
 
+import ResizeMixin from '../../mixin/ResizeHandle'
 export default {
   components: {
     Item
   },
+  mixins: [ResizeMixin],
   data() {
     return {}
   },
@@ -65,6 +69,12 @@ export default {
       const route = this.$route
       const { name } = route
       return name
+    },
+    isCollapse() {
+      return this.deviceWidth < 600
+    },
+    sideWidth() {
+      return this.isCollapse ? 64 : 200
     }
   },
   methods: {
