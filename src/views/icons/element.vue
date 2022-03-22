@@ -1,6 +1,10 @@
 <template>
   <div class="flex flex-wrap icon-wrap">
-    <icon-item v-for="item of elIcons" :key="item">
+    <icon-item
+      v-for="item of elIcons"
+      :key="item"
+      @click.native="handlerClipboard(generateIconCode(item), $event)"
+    >
       <template v-slot:tooltip>
         {{ generateIconCode(item) }}
       </template>
@@ -17,6 +21,8 @@ import IconItem from './components/IconItem'
 
 import elIcons from './element-icons'
 
+import clipboard from '@/utils/clipboard'
+
 export default {
   name: 'Icons',
   components: {
@@ -30,6 +36,10 @@ export default {
   methods: {
     generateIconCode(symbol) {
       return `<i class="el-icon-${symbol}" />`
+    },
+    handlerClipboard(text, event) {
+      console.log(text)
+      clipboard(text, event)
     }
   }
 }
