@@ -1,6 +1,8 @@
 'use strict'
 const path = require('path')
 
+const CompressionPlugin = require('compression-webpack-plugin')
+
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -13,7 +15,17 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
-    }
+    },
+    plugins: [
+      new CompressionPlugin({
+        algorithm: 'gzip',
+        test: /\.js$|\.html$|\.css/,
+        filename: '[path].gz[query]',
+        minRatio: 1,
+        threshold: 10240,
+        deleteOriginalAssets: false
+      })
+    ]
   },
   chainWebpack: config => {
     config.plugin('html').tap(args => {
