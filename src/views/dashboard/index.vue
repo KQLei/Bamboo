@@ -1,6 +1,6 @@
 <template>
   <div style="height: 100%; width: 100%">
-    <div>dev branch</div>
+    
     <chart height="100%" width="100%" :option-data="options" />
   </div>
 </template>
