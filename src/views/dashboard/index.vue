@@ -1,5 +1,6 @@
 <template>
   <div style="height: 100%; width: 100%">
+    <div>我的图表</div>
     <chart height="100%" width="100%" :option-data="options" />
   </div>
 </template>
